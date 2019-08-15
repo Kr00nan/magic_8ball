@@ -1,7 +1,8 @@
+require_relative "m8b_classes"
 require "colorize"
 require "pry"
 
-class EightBall
+class Main
   def initialize
     menu
   end
@@ -14,4 +15,4 @@ class EightBall
   end
 end
 
-EightBall.new
+Main.new
