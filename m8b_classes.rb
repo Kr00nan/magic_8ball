@@ -1,6 +1,6 @@
 class MagicEightBall
   def initialize
-    @responses = [
+    @original_responses = [
       "It is certain.",
       "It is decidedly so.",
       "Without a doubt",
@@ -21,10 +21,32 @@ class MagicEightBall
       "Outlook not so good.",
       "Very doubtful."
     ]
+
+    @user_responses = []
+
   end
 
   def shake
-     puts @responses.sample
+    # joins original responses with user added responses
+    puts @original_responses.concat(@user_responses).sample
+  end
+
+  def check(answer)
+    @original_responses.concat(@user_responses).include?(answer)
+  end
+
+  def add(answer)
+    @user_responses.push(answer)
+  end
+
+  def reset
+    @user_responses.clear
+    binding.pry
+    puts "\nUser added answers have been deleted."
+  end
+
+  def display
+    @original_responses.concat(@user_responses).each {|item| puts item}
   end
 
 end
