@@ -24,7 +24,7 @@ class MagicEightBall
   end
 
   def shake
-    @response.sample
+     puts @responses.sample
   end
 
 end
