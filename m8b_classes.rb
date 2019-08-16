@@ -22,31 +22,35 @@ class MagicEightBall
       "Very doubtful."
     ]
 
-    @user_responses = []
+    @working_responses = Array.new(@original_responses)
 
   end
 
   def shake
-    # joins original responses with user added responses
-    puts @original_responses.concat(@user_responses).sample
+    puts @working_responses.sample
   end
 
-  def check(answer)
-    @original_responses.concat(@user_responses).include?(answer)
-  end
-
-  def add(answer)
-    @user_responses.push(answer)
+  def add
+    puts "What answer would you like to add to the list of responses?".colorize(:yellow)
+    print "> "
+    user_response = gets.strip
+    if @working_responses.include?(user_response)
+      puts "\nThat answer already exists.".colorize(:red)
+      puts "Returning to main menu...".colorize(:red)
+    else
+      puts "\nAdding '#{user_response}' to the list of responses.".colorize(:green)
+      @working_responses.push(user_response)
+    end
   end
 
   def reset
-    @user_responses.clear
-    binding.pry
-    puts "\nUser added answers have been deleted."
+    @working_responses.clear
+    @working_responses = Array.new(@original_responses)
+    puts "Magic Eight Ball answers have been reset."
   end
 
   def display
-    @original_responses.concat(@user_responses).each {|item| puts item}
+    @working_responses.each {|item| puts item.colorize(:cyan)}
   end
 
 end
